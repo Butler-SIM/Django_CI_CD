@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ master ]    #<- master 푸시
+    branches: [ master ]
   pull_request:
-    branches: [ master ]    #<- master pull_request
+    branches: [ master ]
 
 jobs:
   build:
@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@master
 
       - name: EC2_Deploy
-        uses: appleboy/ssh-action@master    #<- EC2 접속
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}         #<- 깃허브 레포 Settings->Secrets-> HOST : EC2 퍼블릭 IPv4 DNS
+          host: ${{ secrets.HOST }}
           username: ubuntu
-          key: ${{ secrets.KEY }}           #<- 깃허브 레포 Settings->Secrets-> KEY : EC2 등록된 키페어 값 (pem)
-          script: |                         #<- 인스턴스 home/ubuntu/deploy 스크립트 실행
+          key: ${{ secrets.KEY }}
+          script: |
             sh deploy                       
 
